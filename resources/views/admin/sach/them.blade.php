@@ -30,8 +30,16 @@
                     </div>
                 @endif
 
-                <form action="admin/tintuc/them/{{$tintuc->id}}" method="POST" enctype="multipart/form-data">
+                <form action="admin/sach/them" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    <div class="form-group">
+                        <label>Tên sách</label>
+                        <input class="form-control" name="TenSach" placeholder="Tên sách" />
+                    </div>
+                    <div class="form-group">
+                        <label>Tác giả</label>
+                        <input class="form-control" name="TacGia" placeholder="Tác giả" />
+                    </div>
                     <div class="form-group">
                         <label>Thể loại</label>
                         <select class="form-control" name="TheLoai" id="TheLoai">
@@ -41,37 +49,24 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Loại tin</label>
-                        <select class="form-control" name="LoaiTin" id="LoaiTin">
-                            @foreach($loaitin as $lt)
-                                <option value="{{$lt->id}}">{{$lt->Ten}}</option>
-                            @endforeach
-                        </select>
+                        <label>Năm xuất bản</label>
+                        <input type="number" class="form-control" name="NamXuatBan" placeholder="Năm xuất bản" />
                     </div>
                     <div class="form-group">
-                        <label>Tiêu đề</label>
-                        <input class="form-control" name="TieuDe" placeholder="Tiêu đề" />
-                    </div>
-                    <div class="form-group">
-                        <label>Tóm tắt</label>
-                        <textarea name="TomTat" id="demo" class="form-control ckeditor" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Nội dung</label>
-                        <textarea name="NoiDung" id="demo" class="form-control ckeditor" rows="5"></textarea>
+                        <label>Nhà xuất bản</label>
+                        <input class="form-control" name="NhaXuatBan" placeholder="Nhà xuất bản" />
                     </div>
                     <div class="form-group">
                         <label>Hình ảnh</label>
-                        <input type="file" class="form-control" name="Hinh"/>
+                        <input id="Hinh" type="file" class="form-control" name="Hinh" required/>
                     </div>
                     <div class="form-group">
-                        <label>Nổi bật</label>
-                        <label class="radio-inline">
-                            <input name="NoiBat" value="0" checked="" type="radio">Không
-                        </label>
-                        <label class="radio-inline">
-                            <input name="NoiBat" value="1" type="radio">có
-                        </label>
+                        <label>Trị giá</label>
+                        <input type="number" class="form-control" name="TriGia" placeholder="Tri giá" />
+                    </div>
+                    <div class="form-group">
+                        <label>Số lượng hiện có</label>
+                        <input type="number" class="form-control" name="SoLuong" placeholder="Số lượng" />
                     </div>
                     <button type="submit" class="btn btn-default">Thêm</button>
                     <button type="reset" class="btn btn-default">Reset</button>
@@ -83,4 +78,23 @@
     <!-- /.container-fluid -->
 </div>
 <!-- /#page-wrapper -->
+@endsection
+
+@section('script')
+<script>
+    $("#Hinh").change(function(e) {
+        for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {        
+            var file = e.originalEvent.srcElement.files[i];      
+            var img = document.createElement("img");
+            var reader = new FileReader();
+            reader.onloadend = function() {
+                img.src = reader.result;
+                img.width = 300;
+            }
+            reader.readAsDataURL(file);
+            $("input").after(img);
+        }
+    });
+
+</script>
 @endsection

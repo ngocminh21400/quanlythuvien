@@ -10,4 +10,9 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public function __construct(){
+        view()->composer('*', function($view){
+            $view->with('thongtindangnhap', auth()->user());
+        });
+    }
 }

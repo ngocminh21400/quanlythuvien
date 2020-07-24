@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">Work smarter no harder</a>
+        <a class="navbar-brand" href="admin/sach/danhsach">Framework - Laravel</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -18,13 +18,13 @@
                 <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                @if(isset($admin))
-                <li><a><i class="fa fa-user fa-fw"></i> {{$admin->name}}</a>
+                @if(isset($thongtindangnhap))
+                <li><a><i class="fa fa-user fa-fw"></i> {{$thongtindangnhap->HoTen}}</a>
                 </li>
-                <li><a href="admin/user/sua/{{$admin->id}}"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                <li><a href="admin/{{$thongtindangnhap->id}}"><i class="fa fa-gear fa-fw"></i> Đổi mật khẩu</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href="admin/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                <li><a href="admin/dangxuat"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
                 </li>
                 @endif
             </ul>
